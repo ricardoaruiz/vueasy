@@ -1,28 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <section class="section-buttons">
+      <h2>Button</h2>
+      <div>
+        Regular: 
+        <VzButton label="Button" tooltip="Button"/>
+        <VzButton label="Button" icon="check"/>
+        <VzButton label="Disabled" :disabled="true" />
+      </div>
+      <div>
+        Circle:
+        <VzButton circle size="small" icon="edit"/>
+        <VzButton circle icon="check"/>
+        <VzButton circle size="large" icon="trash"/>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+  name: 'app'
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.section-buttons button{
+  margin-left: 10px;
+}
+.section-buttons div{
+  margin-bottom: 10px;
 }
 </style>
