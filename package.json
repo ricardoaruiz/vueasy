@@ -1,5 +1,5 @@
 {
-  "name": "vueasy-tst",
+  "name": "vueasy",
   "main": "./dist/vueasy.common.js",
   "version": "0.1.0",
   "private": false,
