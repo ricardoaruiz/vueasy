@@ -1,34 +1,26 @@
 <template>
   <div id="app">
-    <section class="section-buttons">
-      <h2>Button</h2>
-      <div>
-        Regular: 
-        <VzButton label="Button" tooltip="Button"/>
-        <VzButton label="Button" icon="check"/>
-        <VzButton label="Disabled" :disabled="true" />
-      </div>
-      <div>
-        Circle:
-        <VzButton circle size="small" icon="edit"/>
-        <VzButton circle icon="check"/>
-        <VzButton circle size="large" icon="trash"/>
-      </div>
-    </section>
+    <VzButtonDocumentation />
   </div>
 </template>
 
 <script>
+import VzButtonDocumentation from './documentation/VzButtonDocumentation';
+
 export default {
-  name: 'app'
+  name: 'app',
+  components: { VzButtonDocumentation }
 }
 </script>
 
 <style lang="scss">
-.section-buttons button{
-  margin-left: 10px;
+@import 'documentation/style/general.scss';
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
-.section-buttons div{
-  margin-bottom: 10px;
+#app {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 </style>

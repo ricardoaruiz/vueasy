@@ -1,22 +1,30 @@
 <template>
     <button 
-        :type="submit ? 'submit' : 'button'"
-        @click.stop="buttonClicked"
-        :class="`${circle ? 'circle ' + size : 'normal' } ${clazz}`"
+        :id="id"
+        :type="buttonType"
+        :class="buttonClass"
         :title="tooltip"
         :disabled="disabled"
+        v-on="inputListeners"
     >
         <i v-if="icon" :class="`fa fa-${icon}`"></i>
         {{this.label}}
-</button>
+    </button>
 </template>
 
 <script>
 export default {
     props: {
+        id: {
+            type: String,
+            required: true
+        },
         label: {
             type: String
         },
+        icon: {
+            type: String
+        },        
         submit: {
             type: Boolean,
             default: false
@@ -24,9 +32,6 @@ export default {
         circle: {
             type: Boolean,
             default: false
-        },
-        icon: {
-            type: String
         },
         tooltip: {
             type: String
@@ -39,22 +44,37 @@ export default {
             type: String,
             default: 'medium',
             validator: (value) => ['small', 'medium', 'large'].indexOf(value) >= 0
-        },
-        clazz: {
-            type: String,
-            default: ''
         }
     },
-    methods: {
-        buttonClicked() {
-            this.$emit('onClick');
+    computed: {
+        buttonClass() {
+            return {
+                'vz-button': true,
+                'circle'   : this.circle,
+                'small'    : this.circle && this.size === 'small',
+                'medium'   : this.circle && this.size === 'medium',
+                'large'    : this.circle && this.size === 'large',
+                'normal'   : !this.circle
+            };
+        },
+        buttonType() {
+            return this.submit ? 'submit' : 'button';
+        },
+        inputListeners() {
+            return { ...this.$listeners, 
+                click: () => {
+                    /** if override is necessary */
+                    this.$emit('click')
+
+                }
+            };
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-button {
+.vz-button {
     background: $btn-color;
     color: $btn-font-color;
     border: none;
@@ -62,35 +82,36 @@ button {
     font-weight: bold;
     cursor: pointer;
     outline: none;
-}
-button:hover {
-    background: $btn-color-hover;
-}
-button:active {
-    background: $btn-color-active;
-}
-button:disabled {
-    background: $btn-color-disabled;
-}
-.normal {
-    padding: 10px;
-}
-.circle {
-    border-radius: 50%;
-}
-.small {
-    width: 24px;
-    height: 24px;
-    font-size: .9rem;
-}
-.medium {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-}
-.large {
-    width: 52px;
-    height: 52px;
-    font-size: 1.1rem;
+
+    &.normal {
+        padding: 10px;
+    }
+    &.circle {
+        border-radius: 50%;
+    }
+    &.small {
+        width: 24px;
+        height: 24px;
+        font-size: .9rem;
+    }
+    &.medium {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    &.large {
+        width: 52px;
+        height: 52px;
+        font-size: 1.1rem;
+    }
+    &:hover {
+        background: $btn-color-hover;    
+    }
+    &:active {
+        background: $btn-color-active;
+    }
+    &:disabled {
+        background: $btn-color-disabled;
+    }
 }
 </style>

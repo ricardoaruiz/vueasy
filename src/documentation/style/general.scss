@@ -1,0 +1,21 @@
+// Sub-sections
+.sub-section {
+    border-top: 1px solid lightgray;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
+
+// Table
+.table-of-contents {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .table-of-contents th{
+    background: #41b883;
+    border: 1px solid lightgray;
+    padding: 10px;
+  }
+  .table-of-contents td {
+    padding: 10px;
+    border: 1px solid lightgray;
+  }
